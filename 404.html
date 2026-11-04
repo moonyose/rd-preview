@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<title>Demo</title>
+<script>
+(function () {
+  var base = "";
+  var parts = location.pathname.split("/").filter(Boolean);
+  if (!base) {
+    var roots = ["demo-link.html","demo-reset.html","index.html","explore","portfolio","prediction-markets","watchlist","app","chats","research","my-research","markets","market","sign-in","onboarding"];
+    var at = parts.findIndex(function (p) { return roots.indexOf(p) >= 0; });
+    base = "/" + parts.slice(0, at < 0 ? Math.min(1, parts.length) : at).join("/");
+    if (base.slice(-1) !== "/") base += "/";
+  }
+  var rest = location.pathname.slice(base.length - 1) + location.search + location.hash;
+  location.replace(base + (rest.length > 1 ? "?p=" + encodeURIComponent(rest) : ""));
+})();
+</script>
+</head>
+<body></body>
+</html>
